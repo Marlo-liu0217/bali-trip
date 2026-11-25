@@ -146,7 +146,9 @@ details[open] summary::before{content:"－ "}
 .meals .row{display:flex;align-items:flex-start;gap:16px}
 .meals .items{display:flex;flex-wrap:wrap;gap:8px 40px;flex:1}
 .meals .lbl{flex:none;display:inline-flex;align-items:center;gap:6px;font-weight:500;color:var(--text);min-width:64px}
-.meals .lbl svg{width:20px;height:20px;color:var(--main-dark)}
+.meals .lbl svg{width:20px;height:20px}
+.meals .lbl.meal{color:var(--price)}
+.meals .lbl.stay{color:#d0ff8f}
 .meals .k{display:inline-block;border-radius:4px;padding:0 8px;margin-right:8px;font-size:13px}
 .meals .k.meal{background:var(--price);color:#fff}
 .meals .k.stay{background:#d0ff8f;color:#2f4a0a}
@@ -356,13 +358,13 @@ footer li{margin:2px 0;word-break:break-all}
 
     <div class="meals">
       <div class="row">
-        <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3v7a3 3 0 0 0 3 3v8M10 3v7a3 3 0 0 1-3 3M7 3v5M17 21V3c-2.2 0-4 2.7-4 6v4h4"/></svg>餐食</span>
+        <span class="lbl meal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3v7a3 3 0 0 0 3 3v8M10 3v7a3 3 0 0 1-3 3M7 3v5M17 21V3c-2.2 0-4 2.7-4 6v4h4"/></svg>餐食</span>
         <div class="items"><div><span class="k meal">早</span>X</div>
         <div><span class="k meal">午</span>佘家孔雀蛤大王 or 八里老街自行尋找</span></div>
         <div><span class="k meal">晚</span>X</div></div>
       </div>
       <div class="row">
-        <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20V8M3 16h18v4M21 16v-4a3 3 0 0 0-3-3h-7v7M7 12.5a1.5 1.5 0 1 0 0-.01"/></svg>住宿</span>
+        <span class="lbl stay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20V8M3 16h18v4M21 16v-4a3 3 0 0 0-3-3h-7v7M7 12.5a1.5 1.5 0 1 0 0-.01"/></svg>住宿</span>
         <div class="items"><div><span class="k stay">住宿</span>溫暖的家</div></div>
       </div>
     </div>
