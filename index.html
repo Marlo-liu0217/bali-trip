@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>八里左岸一日遊｜第五組旅行社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f6f8; --card:#fff; --line:#e3e6ea; --text:#333; --sub:#666; --muted:#999;
+  --main:#3cc4c4; --main-dark:#2aa6a6; --main-soft:#e8f8f8; --price:#e53935;
+  --good:#2e7d32; --good-soft:#eef7ee; --bad:#c62828; --bad-soft:#fdeeee;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans TC",system-ui,sans-serif;font-size:15px;line-height:1.7}
+img{display:block;max-width:100%}
+a{color:var(--main-dark)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+
+/* header */
+.topbar{position:sticky;top:0;z-index:25;background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6);border-bottom:1px solid rgba(255,255,255,.5);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.topbar .wrap{height:64px;display:flex;align-items:center;justify-content:center}
+.logo{white-space:nowrap;display:flex;align-items:center;gap:8px;font-weight:700;font-size:20px;color:var(--main-dark);text-decoration:none}
+.logo-mark{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.logo small{font-weight:400;font-size:11px;color:var(--muted)}
+
+/* sticky bar */
+.sticky{position:fixed;top:64px;left:0;right:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);transform:translateY(-8px);opacity:0;visibility:hidden;transition:transform .25s,opacity .25s,visibility .25s}
+.sticky.show{transform:none;opacity:1;visibility:visible}
+.sticky .wrap{height:56px;display:flex;align-items:center;gap:16px}
+.sticky .name{flex:1;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sticky .p{color:var(--price);font-weight:700}
+.st-right{margin-left:auto;display:flex;align-items:center;gap:10px;flex:none}
+.st-right .sep{color:#888;margin:0 2px}
+.st-right .btn{margin-left:4px}
+.btn{display:inline-block;background:var(--main);color:#fff;border:0;border-radius:6px;padding:8px 22px;font:inherit;font-weight:500;cursor:pointer;text-decoration:none;transition:background .15s}
+.btn:hover{background:var(--main-dark)}
+
+/* cards */
+.card{scroll-margin-top:132px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:24px 28px;margin-top:20px}
+.card h2{margin:0 0 18px;font-size:22px;font-weight:500}
+.card h3{font-weight:500}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;margin-top:20px}
+.hero-img{border-radius:8px;overflow:hidden;aspect-ratio:4/3;background:#dfe3e8}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-info{background:#fff;border:1px solid var(--line);border-radius:8px;padding:22px 24px;display:flex;flex-direction:column}
+.share{display:flex;gap:8px;justify-content:flex-end;margin-bottom:10px}
+.share{position:relative;align-items:center}
+.sh{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#fff;border:0;padding:0;cursor:pointer;transition:transform .15s,opacity .15s}
+.sh:hover{transform:translateY(-1px);opacity:.9}
+.sh svg{width:18px;height:18px}
+.sh.ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%)}
+.sh.cp{background:var(--main)}
+.toast{position:fixed;left:50%;top:128px;transform:translateX(-50%);z-index:30;background:#333;color:#fff;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+.code{font-size:12px;color:var(--muted)}
+.title{font-size:18px;font-weight:500;margin:4px 0 18px;line-height:1.6}
+.price{font-size:14px;color:var(--sub)}
+.price b{font-size:32px;color:var(--price);margin:0 6px;font-weight:700}
+.link-s{font-size:12px;color:var(--muted);margin-left:8px}
+.inst{font-size:13px;color:var(--sub);margin-top:4px}
+.inst b{color:var(--price)}
+.pill{display:inline-block;border:1px solid var(--main);background:var(--main-soft);color:var(--main-dark);border-radius:20px;padding:2px 14px;font-size:13px;margin:10px 0 20px;align-self:flex-start}
+.pill b{font-weight:700}
+.hero-info .btn{margin-top:0;padding:12px;font-size:17px;text-align:center}
+.ph-note{font-size:11px;color:var(--muted);margin-top:6px}
+
+/* side nav */
+.side{position:fixed;right:12px;top:50%;transform:translateY(-50%);z-index:15;display:flex;flex-direction:column;gap:6px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:8px 4px}
+.side a{display:flex;flex-direction:column;align-items:center;width:52px;padding:8px 0;border-radius:18px;font-size:11px;line-height:1.3;color:var(--main-dark);text-decoration:none;text-align:center}
+.side a svg{width:18px;height:18px;margin-bottom:3px}
+.side a.on,.side a:hover{background:var(--main);color:#fff}
+
+/* transport */
+.legs{display:flex;flex-direction:column;gap:12px}
+.leg{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:15px}
+.leg th{width:120px;background:var(--main-soft);color:var(--main-dark);font-weight:500;text-align:center;padding:12px 16px;border-right:1px solid var(--line)}
+.leg td{padding:12px 20px}
+.stop{background:#f3f4f6;border-radius:4px;padding:2px 10px}
+.arr{color:var(--muted)}
+.mode{font-size:12px;color:#fff;background:var(--main);border-radius:4px;padding:1px 8px}
+.alt{margin-top:16px;font-size:14px;color:var(--sub)}
+.alt li{margin:4px 0}
+.note{font-size:12px;color:var(--muted);margin-top:12px}
+
+/* feature banner */
+.banner{position:relative;border-radius:8px;overflow:hidden}
+.banner img{width:100%;height:380px;object-fit:cover;object-position:center 80%}
+.banner-text{position:absolute;right:0;bottom:0;background:rgba(255,255,255,.93);padding:22px 28px;max-width:440px;border-top-left-radius:8px}
+.banner-text .area{font-family:"Noto Serif TC",serif;font-size:15px;color:#a0522d;letter-spacing:2px}
+.banner-text .big{font-family:"Noto Serif TC",serif;font-size:34px;font-weight:700;color:#8b2d1a;line-height:1.3}
+.banner-text .big i{font-size:16px;font-weight:500;color:#c0603f;margin-left:8px;font-style:italic}
+.banner-text p{font-size:14px;color:var(--sub);margin:8px 0 0}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.feat{border:1px solid var(--line);border-radius:8px;padding:16px 18px}
+.feat .num{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--main);color:#fff;font-weight:700;font-size:14px}
+.feat h3{margin:8px 0 4px;font-size:17px}
+.feat p{margin:0;font-size:14px;color:var(--sub)}
+.sub-h{font-size:18px;font-weight:500;margin:26px 0 8px}
+.tips{margin:0;padding-left:20px;color:var(--sub);font-size:14px}
+.tips li{margin:4px 0}
+.ph{color:var(--muted);background:#f3f4f6;border:1px dashed #ccd1d7;border-radius:4px;padding:0 6px;font-size:.92em}
+
+/* itinerary */
+.day{display:flex;align-items:center;gap:20px;background:var(--main-soft);border-radius:8px;padding:14px 20px}
+.day b{font-size:20px;white-space:nowrap;color:var(--main-dark)}
+.day span{font-size:14px;color:var(--sub)}
+.spot{display:grid;grid-template-columns:300px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}
+.spot-img{border-radius:8px;overflow:hidden;aspect-ratio:4/3;background:#eceff2}
+.spot-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.spot:hover .spot-img img{transform:scale(1.04)}
+.spot-img figcaption{display:none}
+.imgph{width:100%;height:100%;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:14px;border:1px dashed #ccd1d7;border-radius:8px}
+.spot h3{margin:0;font-size:22px;color:var(--text)}
+.addr{font-size:13px;color:var(--muted);margin:2px 0 8px}
+.spot p{margin:0 0 8px;font-size:14.5px;color:#444}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.tag{font-size:12px;color:var(--main-dark);background:var(--main-soft);border-radius:4px;padding:2px 10px}
+.menu{background:#fafafa;border-left:3px solid var(--main);padding:8px 14px;margin:8px 0;font-size:14px}
+.menu div{margin:2px 0}
+details{margin-top:8px;font-size:14px}
+summary{cursor:pointer;color:var(--main-dark);font-weight:500;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"＋ "}
+details[open] summary::before{content:"－ "}
+.rev{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.rev div{border-radius:6px;padding:10px 14px}
+.rev .g{background:var(--good-soft)}
+.rev .b{background:var(--bad-soft)}
+.rev h4{margin:0 0 4px;font-size:13px}
+.rev .g h4{color:var(--good)}
+.rev .b h4{color:var(--bad)}
+.rev ul{margin:0;padding-left:18px;color:var(--sub);font-size:13px}
+
+.timeline{margin:26px 0 0;padding:0;list-style:none;border-left:2px solid var(--main);}
+.timeline li{position:relative;padding:4px 0 10px 22px;font-size:14.5px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:11px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--main)}
+.timeline time{font-weight:500;color:var(--main-dark);margin-right:10px;font-variant-numeric:tabular-nums}
+
+.meals{margin-top:22px;font-size:14px;display:flex;flex-direction:column;gap:12px}
+.meals .row{display:flex;align-items:flex-start;gap:16px}
+.meals .items{display:flex;flex-wrap:wrap;gap:8px 40px;flex:1}
+.meals .lbl{flex:none;display:inline-flex;align-items:center;gap:6px;font-weight:500;color:var(--text);min-width:64px}
+.meals .lbl svg{width:20px;height:20px;color:var(--main-dark)}
+.meals .k{display:inline-block;border-radius:4px;padding:0 8px;margin-right:8px;font-size:13px}
+.meals .k.meal{background:var(--price);color:#fff}
+.meals .k.stay{background:#d0ff8f;color:#2f4a0a}
+
+.fee{border:0;border-radius:10px;padding:0;width:min(420px,calc(100% - 32px));box-shadow:0 10px 40px rgba(0,0,0,.2)}
+.fee::backdrop{background:rgba(0,0,0,.45)}
+.fee-h{display:flex;justify-content:space-between;align-items:center;background:var(--main);color:#fff;padding:12px 18px;font-weight:500;font-size:17px}
+.fee-x{background:none;border:0;color:#fff;font-size:24px;line-height:1;cursor:pointer}
+.fee table{width:calc(100% - 36px);margin:16px 18px 4px;border-collapse:collapse;font-size:15px}
+.fee th{text-align:left;font-weight:500;color:var(--sub);font-size:13px;border-bottom:1px solid var(--line);padding:6px 4px}
+.fee td{padding:10px 4px;border-bottom:1px solid var(--line)}
+.fee td:last-child,.fee th:last-child{text-align:right}
+.fee td b{color:var(--price)}
+.fee .combo{background:#fff8f7}
+.fee .note{padding:0 18px 16px}
+/* footer */
+footer{margin-top:40px;background:#eceef1;color:var(--sub);font-size:12.5px;padding:20px 0}
+footer h4{margin:0 0 6px;font-size:13px;color:var(--text)}
+footer ul{margin:0 0 16px;padding-left:18px}
+footer li{margin:2px 0;word-break:break-all}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.thanks{text-align:center;margin-top:0;font-size:13px;color:var(--muted)}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;gap:16px}
+  .legs,.feats,.foot-grid,.rev{grid-template-columns:1fr}
+  .spot{grid-template-columns:1fr;gap:12px}
+  .banner img{height:240px}
+  .banner-text{position:static;max-width:none;border-radius:0}
+  .banner-text .big{font-size:26px}
+  .card{padding:20px 16px}
+  .day{flex-direction:column;align-items:flex-start;gap:4px}
+  .side{top:auto;bottom:0;left:0;right:0;transform:none;flex-direction:row;justify-content:space-around;border-radius:0;border-width:1px 0 0;padding:4px}
+  .side a{width:auto;flex:1;flex-direction:row;gap:6px;justify-content:center}
+  .side a svg{margin:0}
+  body{padding-bottom:56px}
+  .sticky .name{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar"><div class="wrap">
+  <a class="logo" href="#top"><img class="logo-mark" src="images/logo.png" alt="">八里慢慢遊</a>
+</div></header>
+
+<div class="sticky" id="sticky"><div class="wrap">
+  <div class="name">【親子同遊．遊覽車接送】八里左岸一日遊．渡船頭老街、孔雀蛤大王、左岸單車、十三行博物館、北堤沙灘</div>
+  <div class="st-right">
+    <div>TWD <span class="p">1,500</span> 起</div>
+    <span class="sep" aria-hidden="true">｜</span>
+    <a class="sh ig" href="https://www.instagram.com/balimanmanyou.slowtrip?jplx=c3I2Nm9od2Y4NGNx" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+    <button class="sh cp js-copy" type="button" aria-label="複製網址" title="複製網址"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></button>
+    <a class="btn" href="#top">立即訂購</a>
+  </div>
+</div></div>
+<span class="toast" id="toast" role="status" aria-live="polite"></span>
+
+<nav class="side" id="side" aria-label="快捷選單">
+  <a href="#traffic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17h16M6 17V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10M8 21v-2M16 21v-2M6 12h12"/></svg>交通<br>方式</a>
+  <a href="#itinerary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg>行程<br>介紹</a>
+</nav>
+
+<main class="wrap" id="top">
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="hero-img"><img src="images/hero.jpg" alt="從八里左岸遠眺關渡大橋與淡水河"></div>
+    <div class="hero-info">
+      <div class="share">
+        <a class="sh ig" href="https://www.instagram.com/balimanmanyou.slowtrip?jplx=c3I2Nm9od2Y4NGNx" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+        <button class="sh cp js-copy" type="button" aria-label="複製網址" title="複製網址"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></button>
+      </div>
+      <div class="title">【親子同遊．遊覽車接送】八里左岸一日遊．渡船頭老街、孔雀蛤大王、左岸單車、十三行博物館、北堤沙灘</div>
+      <div class="price">TWD<b>1,500</b>起<a class="link-s" href="#" id="feeBtn">費用說明</a></div>
+      <span class="pill">可售：<b>30</b></span>
+      <a class="btn" href="#">立即訂購</a>
+    </div>
+  </section>
+
+  <!-- traffic -->
+  <section class="card" id="traffic">
+    <h2>交通方式</h2>
+    <div class="legs">
+      <table class="leg"><tr><th>去程</th><td>遊覽車</td></tr></table>
+      <table class="leg"><tr><th>回程</th><td>遊覽車</td></tr></table>
+    </div>
+  </section>
+
+
+  <!-- itinerary -->
+  <section class="card" id="itinerary">
+    <h2>行程介紹</h2>
+    <div class="day"><b>第 1 天</b><span>淡水渡船頭－八里老街－佘家孔雀蛤大王－左岸自行車道－卡滋爆米花－十三行博物館－北堤沙灘－快樂賦歸</span></div>
+
+    <article class="spot">
+      <figure class="spot-img" style="margin:0"><img src="images/spot-oldstreet.jpg" alt="八里老街" loading="lazy"></figure>
+      <div>
+        <h3>八里老街</h3>
+        <div class="addr">新北市八里區渡船頭街</div>
+        <p>淡水河畔極具歷史的港口市集，早年是對外航運的門戶。老街緊鄰水岸公園與碼頭，匯集雙胞胎、花枝燒、孔雀蛤等在地經典小吃，還能沿河岸步道遠眺淡水河口與觀音山。</p>
+        <div class="tags"><span class="tag">懷舊古早味</span><span class="tag">水岸夕陽</span><span class="tag">河口景觀</span></div>
+        <details><summary>旅客怎麼說</summary>
+          <div class="rev">
+            <div class="g"><h4>好評</h4><ul><li>小吃銅板價、選擇多元，雙胞胎與花枝燒很有特色</li><li>水岸視野開闊，夕陽浪漫</li><li>河岸步道適合散步、騎車</li></ul></div>
+            <div class="b"><h4>負評</h4><ul><li>假日熱門小吃排隊久</li><li>停車位一位難求、易塞車</li><li>部分店家重複性高，夏季蚊蟲多</li></ul></div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot">
+      <figure class="spot-img" style="margin:0"><img src="images/spot-mussel.jpg" alt="佘家孔雀蛤大王店面" loading="lazy"></figure>
+      <div>
+        <h3>佘家孔雀蛤大王</h3>
+        <div class="addr">249 新北市八里區米倉里渡船頭街22號</div>
+        <p>創立於1981年，位於八里渡船頭碼頭旁，是全台第一家孔雀蛤專賣店，40年老字號、美食節目爭相採訪。</p>
+        <div class="menu">
+          <div><b>招牌孔雀蛤（快炒）</b>：台灣產孔雀蛤，肉質鮮嫩帶甘甜，以辣椒、蒜末、九層塔大火快炒。</div>
+          <div><b>蒜蓉孔雀蛤（清蒸）</b>：紐西蘭養殖孔雀蛤，肉大有嚼勁，淋上自製蒜蓉汁清蒸。</div>
+        </div>
+        <div class="tags"><span class="tag">40年老字號</span><span class="tag">八里代表美食</span></div>
+        <details><summary>旅客怎麼說</summary>
+          <div class="rev">
+            <div class="g"><h4>好評</h4><ul><li>指標老字號，媒體盛讚</li><li>獨門醬汁鹹香下飯</li><li>蛤肉飽滿、菜色選擇多</li></ul></div>
+            <div class="b"><h4>負評</h4><ul><li>份量縮水、價格略高，白飯另計</li><li>假日尖峰常需排隊</li></ul></div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot">
+      <figure class="spot-img" style="margin:0"><img src="images/bikeway.jpg" alt="八里左岸自行車道" loading="lazy"></figure>
+      <div>
+        <h3>八里左岸自行車道</h3>
+        <div class="addr">新北市八里區左岸一帶</div>
+        <p>沿淡水河岸延伸，途經關渡大橋、八里渡船頭、左岸公園、挖子尾紅樹林自然保護區及十三行博物館。路面平坦、沿途設有公廁，可租借自行車，悠閒騎往下一站。</p>
+        <div class="tags"><span class="tag">親近河岸</span><span class="tag">親子騎乘</span><span class="tag">紅樹林生態</span></div>
+        <details><summary>旅客怎麼說</summary>
+          <div class="rev">
+            <div class="g"><h4>好評</h4><ul><li>步道規劃完善，植被豐富</li><li>路面平坦，有樹蔭與乾淨公廁</li><li>微風吹拂，河岸風光優美</li></ul></div>
+            <div class="b"><h4>負評</h4><ul><li>遇施工路段影響通行</li><li>假日部分路段擁擠</li><li>遮蔭少，晴天較熱</li></ul></div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot">
+      <figure class="spot-img" style="margin:0"><img src="images/spot-popcorn.jpg" alt="卡滋爆米花觀光工廠樂園入口" loading="lazy"></figure>
+      <div>
+        <h3>卡滋爆米花觀光工廠樂園</h3>
+        <div class="addr">新北市八里區觀海大道171號</div>
+        <p>2020年成立的爆米花主題觀光工廠，以美式小鎮風格打造，處處是拍照場景。透過導覽認識爆米花的製作流程與歷史，還有體感互動遊戲、手作DIY與多種口味試吃。</p>
+        <div class="tags"><span class="tag">美式小鎮</span><span class="tag">手作DIY</span><span class="tag">口味試吃</span></div>
+        <details><summary>旅客怎麼說</summary>
+          <div class="rev">
+            <div class="g"><h4>好評</h4><ul><li>美式風格鮮明，拍照點多</li><li>導覽、遊戲、DIY兼具教育與娛樂</li><li>多種特殊口味可試吃</li></ul></div>
+            <div class="b"><h4>負評</h4><ul><li>參觀時間短，適合順遊</li><li>DIY偏親子取向，成人較無挑戰</li></ul></div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot">
+      <figure class="spot-img" style="margin:0"><img src="images/spot-museum.jpg" alt="十三行博物館建築外觀" loading="lazy"></figure>
+      <div>
+        <h3>十三行博物館</h3>
+        <div class="addr">新北市八里區博物館路200號</div>
+        <p>2004年開館，介紹十三行文化、圓山文化等史前遺址，設有特展廳與考古體驗室。三棟建物象徵高山與大海，傾斜的八角塔寓意毀壞的遺跡難以重現歷史全貌。</p>
+        <div class="tags"><span class="tag">前衛建築</span><span class="tag">史前考古</span><span class="tag">全票80元・新北市民免費</span></div>
+        <details><summary>旅客怎麼說</summary>
+          <div class="rev">
+            <div class="g"><h4>好評</h4><ul><li>清水混凝土建築，熱門打卡點</li><li>考古VR體驗、戶外考古沙坑</li><li>票價便宜</li></ul></div>
+            <div class="b"><h4>負評</h4><ul><li>場館規模不大</li><li>假日停車困難</li><li>部分遺址因汙水廠興建遭破壞</li></ul></div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot">
+      <figure class="spot-img" style="margin:0"><img src="images/spot-beach.jpg" alt="北堤沙灘夕照" loading="lazy"></figure>
+      <div>
+        <h3>北堤沙灘</h3>
+        <div class="addr">新北市八里區埤頭里挖子尾街1號</div>
+        <p>退潮或積水時，平坦的沙灘倒映藍天流雲，被譽為北台灣的「天空之鏡」。遠眺大屯山、觀音山與一整排風力發電機，也是遠望淡水漁人碼頭與看煙火的平替視角。</p>
+        <div class="tags"><span class="tag">天空之鏡</span><span class="tag">夕陽秘境</span><span class="tag">未過度開發</span></div>
+        <details><summary>旅客怎麼說</summary>
+          <div class="rev">
+            <div class="g"><h4>好評</h4><ul><li>沙灘乾淨、視野開闊，傍晚夕陽很美</li><li>騎腳踏車沿途風景好，周邊有小吃</li></ul></div>
+            <div class="b"><h4>負評</h4><ul><li>不適合玩水，只適合散步賞景</li><li>停車難、沒有洗手間與遮蔽</li><li>夏天蚊蟲多</li></ul></div>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <ol class="timeline">
+      <li><time>08:30</time>定點集合，搭乘遊覽車前往八里</li>
+      <li><time>09:30</time>抵達八里渡船頭，八里老街散策、品嘗雙胞胎與花枝燒</li>
+      <li><time>11:30</time>佘家孔雀蛤大王享用午餐</li>
+      <li><time>13:00</time>租借自行車，沿八里左岸自行車道騎乘</li>
+      <li><time>14:00</time>卡滋爆米花觀光工廠樂園導覽與DIY</li>
+      <li><time>15:15</time>十三行博物館參觀、考古體驗</li>
+      <li><time>16:45</time>北堤沙灘漫步，欣賞天空之鏡與夕陽</li>
+      <li><time>18:00</time>搭乘遊覽車返回集合地點，快樂賦歸</li>
+    </ol>
+    <div class="note">※ 時間為暫定（placeholder），實際以說明會資料為主。</div>
+
+    <div class="meals">
+      <div class="row">
+        <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3v7a3 3 0 0 0 3 3v8M10 3v7a3 3 0 0 1-3 3M7 3v5M17 21V3c-2.2 0-4 2.7-4 6v4h4"/></svg>餐食</span>
+        <div class="items"><div><span class="k meal">早</span>X</div>
+        <div><span class="k meal">午</span>佘家孔雀蛤大王 or 八里老街自行尋找</span></div>
+        <div><span class="k meal">晚</span>X</div></div>
+      </div>
+      <div class="row">
+        <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20V8M3 16h18v4M21 16v-4a3 3 0 0 0-3-3h-7v7M7 12.5a1.5 1.5 0 1 0 0-.01"/></svg>住宿</span>
+        <div class="items"><div><span class="k stay">住宿</span>溫暖的家</div></div>
+      </div>
+    </div>
+  </section>
+  <!-- tips -->
+  <section class="card" id="tips">
+    <h2>溫馨提醒</h2>
+    <ol class="tips">
+      <li>夏季戶外遮蔭較少，請備妥防曬用品與飲水。</li>
+      <li>北堤沙灘、挖子尾一帶夏天蚊蟲較多，建議攜帶防蚊液。</li>
+      <li>假日熱門小吃需排隊，行程時間可能前後調整。</li>
+      <li><span class="ph">本行程最低出團人數 30 人以上(含)</span></li>
+    </ol>
+  </section>
+</main>
+
+<dialog class="fee" id="fee" aria-labelledby="feeTitle">
+  <div class="fee-h"><span id="feeTitle">費用說明</span><button class="fee-x" id="feeClose" aria-label="關閉">×</button></div>
+  <table>
+    <tbody>
+      <tr><td>大人</td><td><b>TWD 1,500</b></td></tr>
+      <tr><td>小孩</td><td><b>TWD 1,200</b></td></tr>
+      <tr class="combo"><td>一大一小 <span class="tag">優惠組合</span></td><td><b>TWD 2,500</b></td></tr>
+    </tbody>
+  </table>
+</dialog>
+
+
+<footer>
+  <div class="wrap">
+    <div class="thanks">Thank You — Presented by 第五組｜本頁為課堂作業示意，非真實販售行程</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var sticky=document.getElementById('sticky');
+  var hero=document.querySelector('.hero');
+  var links=[].slice.call(document.querySelectorAll('.side a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function onScroll(){
+    var y=window.scrollY;
+    sticky.classList.toggle('show', y > hero.offsetTop + hero.offsetHeight);
+    var cur=-1;
+    secs.forEach(function(s,i){ if(s.getBoundingClientRect().top < 140) cur=i; });
+    links.forEach(function(a,i){ a.classList.toggle('on', i===cur); });
+  }
+  var fee=document.getElementById('fee');
+  document.getElementById('feeBtn').addEventListener('click',function(e){e.preventDefault();fee.showModal();});
+  document.getElementById('feeClose').addEventListener('click',function(){fee.close();});
+  fee.addEventListener('click',function(e){if(e.target===fee)fee.close();});
+  var toast=document.getElementById('toast'),tt;
+  function showToast(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},1800);}
+  function fallbackCopy(t){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(a);return ok;}
+  [].forEach.call(document.querySelectorAll('.js-copy'),function(b){b.addEventListener('click',function(){
+    var url=location.href;
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(url).then(function(){showToast('已複製網址')},function(){showToast(fallbackCopy(url)?'已複製網址':'複製失敗，請手動複製')});}
+    else{showToast(fallbackCopy(url)?'已複製網址':'複製失敗，請手動複製');}
+  });});
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>
